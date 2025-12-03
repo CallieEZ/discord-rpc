@@ -107,6 +107,9 @@ size_t JsonWriteRichPresenceObj(char* dest,
 
                 WriteOptionalString(writer, "state", presence->state);
                 WriteOptionalString(writer, "details", presence->details);
+                //little hack to make music status work in discord cpp
+                WriteKey(writer, "type");
+                writer.Int64(2);
 
                 if (presence->startTimestamp || presence->endTimestamp) {
                     WriteObject timestamps(writer, "timestamps");
